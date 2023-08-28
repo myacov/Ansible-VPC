@@ -4,12 +4,12 @@ vpc_name: "Vprofile-vpc"
 vpcCidr: '172.20.0.0/16'
 
 # Subnet Range
-PubSub1Cider: 172.20.1.0/24
-PubSub2Cider: 172.20.2.0/24
-PubSub3Cider: 172.20.3.0/24
-PrivSub1Cider: 172.20.4.0/24
-PrivSub2Cider: 172.20.5.0/24
-PrivSub3Cider: 172.20.6.0/24
+PubSub1Cidr: 172.20.1.0/24
+PubSub2Cidr: 172.20.2.0/24
+PubSub3Cidr: 172.20.3.0/24
+PrivSub1Cidr: 172.20.4.0/24
+PrivSub2Cidr: 172.20.5.0/24
+PrivSub3Cidr: 172.20.6.0/24
 
 # Region Name
 region: "us-east-2"
