@@ -98,6 +98,6 @@
         region: "{{region}}"
         resource_tags:
           Name: vprofile-igw
-          register: igw_out
+      register: igw_out
 
 
