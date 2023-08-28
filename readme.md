@@ -22,8 +22,8 @@ Solution must include:
 ![Project diagram](./images/proj6.jpg)
 
 ## Tools and Services Used
-| Tools | USE | 
-| ------------- | ------------- | 
+| Tools | USE |
+| ------------- | ------------- |
 |🖥️ EC2 |  |
 |🤖 Ansible | Automation tool |
 | GitHub | Version control |
@@ -80,8 +80,8 @@ Inbound rules:
 ```
 
 ### 3. Create variable files: 
-- [vpc_setup](vpc_setup)
-- [bastion_setup](bastion_setup)
+- [vpc_setup](vars/vpc_setup)
+- [bastion_setup](vars/bastion_setup)
 
 
 #### References and Documentation: 
