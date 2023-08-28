@@ -88,5 +88,16 @@
         cidr: "{{PrivSub3Cidr}}"
         map_public: yes
         resource_tags:
-          Name: vprofile-privbsub3
+          Name: vprofile-privsub3
       register: priv_sub3_out
+
+    - name: Internet Gateway setup
+      ec2_vpc_igw:
+        vpc_id: "{{vpcout.vpc.id}}"
+        state: "{{state}}"
+        region: "{{region}}"
+        resource_tags:
+          Name: vprofile-igw
+          register: igw_out
+
+
