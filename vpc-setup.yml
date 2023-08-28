@@ -117,7 +117,6 @@
 
     - name: Create a new NAT gateway and allocate new EIP if NAT doesn't exist in the
       ec2_vpc_nat_gateway:
-        vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         state: "{{state}}"
         subnet_id: "{{pub_sub1_out.subnet.id}}"
