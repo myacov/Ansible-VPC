@@ -1,0 +1,4 @@
+bastion_ami: ami-0911e88fb4687e06b
+region: us-east-2
+MY_IP: 85.64.150.64/32         
+
