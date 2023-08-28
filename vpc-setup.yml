@@ -154,4 +154,21 @@
         - NATGW_out.nat_gateway_id
         - pubRT_out.route_table.id
 
+    - set_fact:
+        vpcid: "{{vpcout.vpc.id}}"
+        pubsub1_id: "{{pub_sub1_out.subnet.id}}"
+        pubsub2_id: "{{pub_sub2_out.subnet.id}}"
+        pubsub3_id: "{{pub_sub3_out.subnet.id}}"
+        privsub1_id: "{{priv_sub1_out.subnet.id}}"
+        privsub2_id: "{{priv_sub2_out.subnet.id}}"
+        privsub3_id: "{{priv_sub3_out.subnet.id}}"
+        igwid: "{{igw_out.gateway_id}}"
+        pubRTid: "{{pubRT_out.route_table.id}}"
+        NATGWid: "{{NATGW_out.nat_gateway_id}}"
+        privRTid: "{{pubRT_out.route_table.id}}"
+        cacheable: yes
 
+    - name: Create var files for vpc output
+      copy:
+        content: "vpcid: {{vpcout.vpc.id}}\n pubsub1_id: {{pub_sub1_out.subnet.id}}\n pubsub2_id: {{pub_sub2_out.subnet.id}}\n pubsub3_id: {{pub_sub3_out.subnet.id}}\n privsub1_id: {{priv_sub1_out.subnet.id}}\n privsub2_id: {{priv_sub2_out.subnet.id}}\n privsub3_id: {{priv_sub3_out.subnet.id}}\n igwid: {{igw_out.gateway_id}}\n pubRTid:  {{pubRT_out.route_table.id}}\n NATGWid: {{NATGW_out.nat_gateway_id}}\n privRTid: {{pubRT_out.route_table.id}}"
+        dest: vars/output_vars
