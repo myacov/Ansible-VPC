@@ -115,7 +115,7 @@
             gateway_id: "{{igw_out.gateway_id}}"
       register: pubRT_out
 
-    - name: Create a new NAT gateway and allocate new EIP if NAT doesn't exist in the
+    - name: Create a new NAT gateway and allocate new EIP if NAT doesn't exists in the subnet
       ec2_vpc_nat_gateway:
         region: "{{region}}"
         state: "{{state}}"
@@ -138,5 +138,20 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{NATGW_out.nat_gateway_id}}"
       register: pubRT_out
+
+    - debug:
+        var: "{{item}}"
+      loop:
+        - vpcout.vpc.id
+        - pub_sub1_out.subnet.id
+        - pub_sub2_out.subnet.id
+        - pub_sub3_out.subnet.id
+        - priv_sub1_out.subnet.id
+        - priv_sub2_out.subnet.id
+        - priv_sub3_out.subnet.id
+        - igw_out.gateway_id
+        - pubRT_out.route_table.id
+        - NATGW_out.nat_gateway_id
+        - pubRT_out.route_table.id
 
 
