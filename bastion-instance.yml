@@ -40,6 +40,7 @@
     - name: Create Bastion Host
       ec2:
         key_name: vprofile-key
+        region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
         wait: yes
