@@ -1,10 +1,7 @@
 # Ansible-VPC
 
 ## Cloud Automation with Ansible 
-This repository focuses on automating the setup of a 
-**Virtual Private Cloud (VPC)** on AWS using Ansible.
-Efficiently deploying a secure and highly available 
-VPC architecture with ease.
+Automating the Deployment of a Secure and Highly Available **Virtual Private Cloud (VPC)** on AWS using Ansible.
 
 ### Project Goals:
 The primary objectives of this project are as follows:
@@ -15,7 +12,15 @@ The primary objectives of this project are as follows:
 - **Infrastructure as Code (IaaC):** Use version control to maintain the VPC setup as code, ensuring consistency and traceability.
 
 ## Architecture Overview
-Here's an overview of the architecture you'll be implementing through this project:
+The architecture consists of the following components:
+- VPC
+- Subnets
+- NAT Gateways
+- Internet Gateway
+- Route Tables
+- Security Groups
+- EC2 Instances (including Bastion Host)
+
 ![Project diagram](./images/proj6.jpg)
 
 ## Tools and Services Used
@@ -25,21 +30,24 @@ Key tools and services involved in this project include:
 - Ansible: Automation tool used for configuration management.
 - GitHub: Version control to track and manage changes to infrastructure code.
 
-
-
 ## Learning Objectives
-- Setting up infrastructure using Ansible.
-- Creating a secure environment.
-- Using variable files for defining VPC and bastion host configuration.
-- Writing Ansible playbooks for VPC and bastion host setup.
+1.	**Infrastructure as Code (IaaC):** Understand the concept for improved manageability.
+2.	**Ansible Playbooks:** writing Ansible playbooks for setting up complex components, enhancing automation skills.
+3.	**AWS Resource Provisioning:** provisioning AWS resources programmatically.
+4.	**Security Best Practices**  within a VPC, setting up security groups, private and public subnets, and a bastion host.
+5.	**High Availability:** multi-availability-zone deployment and the creation of redundant resources.
+6.	**Variable Usage:** using variables effectively in Ansible playbooks for dynamic configuration and maintainability.
+7. **Troubleshooting and Debugging:** using tools for diagnosing issues and debugging automation scripts.
 
-## Implementation
+
+## Implementation Steps
 
 1. **Launch EC2 Instance**: 
 control-machine for running ansible playbook, pre-installed with Ansible and Boto
 2. **Create and attach IAM Role for Instance**
 3. **Create Variable files for VPC & Bastion host**
 4. **Create VPC & Bastion host setup playbooks**
+5. **Run playbooks**
 
 ## Prerequisites:
 - An active AWS account to provision resources.
@@ -100,8 +108,23 @@ aws sts get-caller-identity
   - Creates a security group to allow SSH access
   - Launches a bastion host instance in a specified public subnet.
  
+## Usage Instructions
+1. Clone this repository to your local machine using git clone.
+
+2. Configure your AWS credentials using the AWS CLI on your control machine:
+```bash
+aws configure
+```
+3. Update the variable files in the vars directory to match your desired VPC and bastion host configurations.
+4. Run the VPC setup and the bastion host setup playbook:
+```bash
+ansible-playbook vpc_setup.yml
+ansible-playbook bastion-instance.yml
+```
+5. Access  newly created bastion host and start managing your VPC infrastructure!
+
 ### References and Documentation: 
-[Modules on Ansible website](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
+[Modules on the Ansible website](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 
 
  
