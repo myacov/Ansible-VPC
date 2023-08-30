@@ -84,8 +84,8 @@ aws sts get-caller-identity
 ### 3. Create Variable Files: 
 
 - [vpc_setup](vars/vpc_setup): Define variables related to VPC configuration.
-  - VPC Range, Subnet Range, Region, availability zones, and state
-- [bastion_setup](vars/bastion_setup): Define variables for bastion host setup.
+  - VPC Range, Subnet Range, Region, availability zones, and state 
+  - Define variables for bastion host setup.
   - bastion ami, region and IP 
 
 ### 4. Create VPC setup playbook
