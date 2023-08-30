@@ -1,12 +1,12 @@
-vpcid: vpc-066dde6601f8d9155
-pubsub1_id: subnet-02ad30cbe371a1ff4
-pubsub2_id: subnet-097385aa3dc4dffc3
-pubsub3_id:subnet-08ce22da26b4fe0b4
-privsub1_id: subnet-0e00ab92f317d3651
-privsub2_id: subnet-01bdce87c933a3bcc
-privsub3_id: subnet-0a3756f2724e85ade
-igwid: igw-025b4a3fb63406718
-pubRTid: rtb-0854d6c2b6e8da6bd
-NATGWid: nat-0e27b0eca26ebdb92
-privRTid: rtb-0854d6c2b6e8da6bd
+vpcid: vpc-xxxxxxxxxxxxxxxxxxxxxxx
+pubsub1_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
+pubsub2_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
+pubsub3_id:subnet-xxxxxxxxxxxxxxxxxxxxxxx
+privsub1_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
+privsub2_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
+privsub3_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
+igwid: igw-xxxxxxxxxxxxxxxxxxxxxxx
+pubRTid: rtb-xxxxxxxxxxxxxxxxxxxxxxx
+NATGWid: nat-xxxxxxxxxxxxxxxxxxxxxxx
+privRTid: xxxxxxxxxxxxxxxxxxxxxxx
 
