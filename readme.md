@@ -37,22 +37,17 @@ Key tools and services involved in this project include:
 
 1. **Launch EC2 Instance**: 
 control-machine for running ansible playbook, pre-installed with Ansible and Boto
-2. **Create IAM role for Instance**
+2. **Create and attach IAM Role for Instance**
 3. **Create Variable files for VPC & Bastion host**
 4. **Create VPC & Bastion host setup playbooks**
-5. **Create Site.yml playbook**
 
 ## Prerequisites:
 - An active AWS account to provision resources.
 - Basic familiarity with AWS services and concepts.
 
 ## Detailed Steps
-### 1.  Security Groups Setup and EC2 Instances
-#### Ansible Security group (**Ansible-SG**):
+### 1.  Setup EC2 Instance
 
-
-
-#### control-machine Instance
 - Name: **`control-machine`**
 - Project: `Ansible-VPC`
 - AMI: `Ubuntu Server 22.04 LTS`
