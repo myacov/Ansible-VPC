@@ -72,3 +72,111 @@
           - proto: all
             group_id: "{{vpro_stack_SG_out.group_id}}"
             rule_desc: allow traffic to within SG
+
+    - name: Create Nginx web01
+      ec2:
+        key_name: vpro-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{nginx_ami}}"         # AMI ID for the bastion host image.
+        wait: yes
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
+        instance_tags:
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps
+        exact_count: 1                   # Create exactly 1 instance.
+        count_tag:
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps
+        group_id: "{{vpro_stack_SG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{privsub1_id}}"          # ID of the public subnet to launch the instance.
+      register: web01_out           # Store the output of this task in 'web01_out'.
+
+    - name: Create Tomcat app01
+      ec2:
+        key_name: vpro-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{tomcat_ami}}"         # AMI ID for the bastion host image.
+        wait: yes
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
+        instance_tags:
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps
+        exact_count: 1                   # Create exactly 1 instance.
+        count_tag:
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps
+        group_id: "{{vpro_stack_SG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{privsub1_id}}"          # ID of the public subnet to launch the
+      register: app01_out           # Store the output of this task in 'app01_out'.
+
+    - name: Create memcache mc01
+      ec2:
+        key_name: vpro-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{memcache_ami}}"         # AMI ID for the bastion host image.
+        wait: yes
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
+        instance_tags:
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps
+        exact_count: 1                   # Create exactly 1 instance.
+        count_tag:
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps
+        group_id: "{{vpro_stack_SG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{privsub1_id}}"          # ID of the public subnet to launch the
+      register: mc01_out           # Store the output of this task in 'mc01_out'.
+
+    - name: Create RabbitMQ rmq01
+      ec2:
+        key_name: vpro-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{rmq_ami}}"         # AMI ID for the bastion host image.
+        wait: yes
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
+        instance_tags:
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps
+        exact_count: 1                   # Create exactly 1 instance.
+        count_tag:
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps
+        group_id: "{{vpro_stack_SG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{privsub1_id}}"          # ID of the public subnet to launch the
+      register: rmq01_out           # Store the output of this task in 'rmq01_out'
+
+    - name: Create Mysql db01
+      ec2:
+        key_name: vpro-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{mysql_ami}}"         # AMI ID for the bastion host image.
+        wait: yes
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
+        instance_tags:
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps
+        exact_count: 1                   # Create exactly 1 instance.
+        count_tag:
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps
+        group_id: "{{vpro_stack_SG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{privsub1_id}}"          # ID of the public subnet to launch the
+      register: db01_out           # Store the output of this task in 'db01_out'
+
+    - debug:
+        var: db01_out
