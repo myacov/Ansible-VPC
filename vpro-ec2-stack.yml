@@ -25,3 +25,39 @@
         dest: ./vpro-key.pem                 # Destination path for saving the private key.
         mode: 0600                              # Set permissions on the private key file.
       when: vprokey_out.changed                     # Conditionally execute this task when the private key changes.
+
+    - name: Create Security group for Load Balancer
+      ec2_group:
+        name: vpro-elb-SG                 # Name of the security group for Load Balancer
+        description: Allow port 80 from everywhere and all ports within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+      register: vpro_ELB_SG_out            # Store the output of this task in 'BastionSG_out'.
+
+    - name: Create Security group for vprofile stack
+      ec2_group:
+        name: vpro-stack-SG                 # Name of the security group for Load Balancer
+        description: Allow port 22 from everywhere and all ports within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vpro_ELB_SG_out.group_id}}"
+            rule_desc: allow traffic to Load Balancer on port 80
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{BastionSGid}}"
+            rule_desc: allow all on port 80
+
+      register: vpro_ELB_SG_out            # Store the output of this task in 'BastionSG_out'.

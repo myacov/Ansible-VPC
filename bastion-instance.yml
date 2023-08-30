@@ -41,6 +41,12 @@
             rule_desc: allow all on port 80
       register: BastionSG_out            # Store the output of this task in 'BastionSG_out'.
 
+    - name: Insert/Update "BastionSGid" in vars/output-vars
+      blockinfile:
+        path: vars/bastion_output_vars    # update 'output_vars' with Bastion SG id
+        block: |
+          BastionSGid: {{BastionSG_out.group_id}}
+
     - name: Create Bastion Host
       ec2:
         key_name: vprofile-key           # Name of the key pair to use for the bastion host.
