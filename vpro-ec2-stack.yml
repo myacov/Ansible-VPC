@@ -1,0 +1,27 @@
+---
+- name: Setup vprofile Stack
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Import VPC setup variables
+      include_vars: vars/vpc_setup
+
+    - name: Import VPC setup output variables
+      include_vars: vars/output_vars   # Import variables from the 'vars/output_vars' file.
+
+    - name: Import vprofile setup variables
+      include_vars: vars/vprostack_setup
+
+    - name: Create vprofile ec2 key
+      ec2_key:
+        name: vpro-key        # Name of the EC2 key pair to be created.
+        region: "{{region}}"      # AWS region where the key pair will be created.
+      register: vprokey_out           # Store the output of this task in the 'key_out' variable.
+
+    - name: Save private key into file vpro-key.pem
+      copy:
+        content: "{{vprokey_out.key.private_key}}"  # Private key generated in the previous task.
+        dest: ./vpro-key.pem                 # Destination path for saving the private key.
+        mode: 0600                              # Set permissions on the private key file.
+      when: vprokey_out.changed                     # Conditionally execute this task when the private key changes.
