@@ -42,7 +42,7 @@
 
     - name: Create Security group for vprofile stack
       ec2_group:
-        name: vpro-stack-SG                 # Name of the security group for Load Balancer
+        name: vpro-stack-SG
         description: Allow port 22 from everywhere and all ports within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
@@ -58,6 +58,17 @@
             from_port: 22
             to_port: 22
             group_id: "{{BastionSGid}}"
-            rule_desc: allow all on port 80
+            rule_desc: allow access from bastion host on port 22
+      register: vpro_stack_SG_out            # Store the output of this task in 'vpro_stack_SG_out'.
 
-      register: vpro_ELB_SG_out            # Store the output of this task in 'BastionSG_out'.
+    - name: Update Security group with its own sg id
+      ec2_group:
+        name: vpro-stack-SG
+        description: Allow port 22 from everywhere and all ports within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
+        purge_rules: no
+        rules:
+          - proto: all
+            group_id: "{{vpro_stack_SG_out.group_id}}"
+            rule_desc: allow traffic to within SG
