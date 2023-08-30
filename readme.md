@@ -14,9 +14,10 @@ The primary objectives of this project are as follows:
 ## Architecture Overview
 The architecture consists of the following components:
 - VPC
+- IAM Roles
 - Subnets
-- NAT Gateways
 - Internet Gateway
+- NAT Gateways
 - Route Tables
 - Security Groups
 - EC2 Instances (including Bastion Host)
@@ -31,12 +32,12 @@ Key tools and services involved in this project include:
 - GitHub: Version control to track and manage changes to infrastructure code.
 
 ## Learning Objectives
-1.	**Infrastructure as Code (IaaC):** Understand the concept for improved manageability.
-2.	**Ansible Playbooks:** writing Ansible playbooks for setting up complex components, enhancing automation skills.
-3.	**AWS Resource Provisioning:** provisioning AWS resources programmatically.
-4.	**Security Best Practices**  within a VPC, setting up security groups, private and public subnets, and a bastion host.
-5.	**High Availability:** multi-availability-zone deployment and the creation of redundant resources.
-6.	**Variable Usage:** using variables effectively in Ansible playbooks for dynamic configuration and maintainability.
+1. **Infrastructure as Code (IaaC):** Understand the concept for improved manageability.
+2. **Ansible Playbooks:** writing Ansible playbooks for setting up complex components, enhancing automation skills.
+3. **AWS Resource Provisioning:** provisioning AWS resources programmatically.
+4. **Security Best Practices**  within a VPC, setting up security groups, private and public subnets, and a bastion host.
+5. **High Availability:** multi-availability-zone deployment and the creation of redundant resources.
+6. **Variable Usage:** using variables effectively in Ansible playbooks for dynamic configuration and maintainability.
 7. **Troubleshooting and Debugging:** using tools for diagnosing issues and debugging automation scripts.
 
 
@@ -110,9 +111,8 @@ aws sts get-caller-identity
  
 ## Usage Instructions
 1. Clone this repository to your local machine using git clone.
-
 2. Configure your AWS credentials using the AWS CLI on your control machine:
-```bash
+```bash 
 aws configure
 ```
 3. Update the variable files in the vars directory to match your desired VPC and bastion host configurations.
