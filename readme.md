@@ -73,15 +73,33 @@ aws sts get-caller-identity
 ```
 
 ### 3. Create Variable Files: 
+
 - [vpc_setup](vars/vpc_setup): Define variables related to VPC configuration.
+  - VPC Range, Subnet Range, Region, availability zones, and state
 - [bastion_setup](vars/bastion_setup): Define variables for bastion host setup.
+  - bastion ami, region and IP 
 
-### 4. Create VPC & Bastion host setup playbooks
+### 4. Create VPC setup playbook
 
-- [vpc_setup.yml](./vpc-setup.yml): VPC setup playbook.
+[vpc_setup.yml](./vpc-setup.yml): VPC setup playbook
+- Imports `vars/vpc_setup` file
+- Creates VPC
+- Creates Public Subnets in different AZs
+- Creates Internet Gateway
+- Creates Public subnet route tables
+- Creates a new NAT gateway and allocate Elastic IP
+- Creates Private subnet route tables
+- The created resources and their IDs are written to an `output_vars` file for further usage.
+
+### 5. Create Bastion host setup playbook
+
 - [bastion-instance.yml](./bastion-instance.yml): bastion host setup playbook.
-
-
+  - Imports variables from the `vars/bastion_setup` and `vars/output_vars` files 
+  - Generates an EC2 key pair
+  - Saves the private key locally 
+  - Creates a security group to allow SSH access
+  - Launches a bastion host instance in a specified public subnet.
+ 
 ### References and Documentation: 
 [Modules on Ansible website](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 

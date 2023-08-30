@@ -5,59 +5,60 @@
   gather_facts: no
   tasks:
     - name: Import VPC setup variables
-      include_vars: vars/bastion_setup
+      include_vars: vars/bastion_setup  # Import variables from the 'vars/bastion_setup' file.
 
     - name: Import VPC setup output variables
-      include_vars: vars/output_vars
+      include_vars: vars/output_vars   # Import variables from the 'vars/output_vars' file.
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vprofile-key
-        region: "{{region}}"
-      register: key_out
+        name: vprofile-key        # Name of the EC2 key pair to be created.
+        region: "{{region}}"      # AWS region where the key pair will be created.
+      register: key_out           # Store the output of this task in the 'key_out' variable.
 
  #   - debug:
  #      var: key_out
 
     - name: Save private key into file bastion-key.pem
       copy:
-        content: "{{key_out.key.private_key}}"
-        dest: ./bastion-key.pem
-        mode: 0600
-      when: key_out.changed
+        content: "{{key_out.key.private_key}}"  # Private key generated in the previous task.
+        dest: ./bastion-key.pem                 # Destination path for saving the private key.
+        mode: 0600                              # Set permissions on the private key file.
+      when: key_out.changed                     # Conditionally execute this task when the private key changes.
 
 
     - name: Create Security group for bastion host
       ec2_group:
-        name: bastion-SG
+        name: bastion-SG                 # Name of the security group for the bastion host.
         description: Allow port 22 from everywhere and all ports within
         region: "{{region}}"
-        vpc_id: "{{vpcid}}"
+        vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
         rules:
           - proto: tcp
             from_port: 22
             to_port: 22
-            cidr_ip: "{{MY_IP}}"
+            cidr_ip: "{{MY_IP}}"         # IP address to allow SSH access.
             rule_desc: allow all on port 80
-      register: BastionSG_out
+      register: BastionSG_out            # Store the output of this task in 'BastionSG_out'.
 
     - name: Create Bastion Host
       ec2:
-        key_name: vprofile-key
+        key_name: vprofile-key           # Name of the key pair to use for the bastion host.
         region: "{{region}}"
-        instance_type: t2.micro
-        image: "{{bastion_ami}}"
+        instance_type: t2.micro           # Instance type for the bastion host.
+        image: "{{bastion_ami}}"         # AMI ID for the bastion host image.
         wait: yes
-        wait_timeout: 300
+        wait_timeout: 300                # Maximum time [sec] to wait for instance creation.
         instance_tags:
           Name: "Bastion-host"
           Project: Vprofile
           Owner: DevOps
-        exact_count: 1
+        exact_count: 1                   # Create exactly 1 instance.
         count_tag:
           Name: "Bastion-host"
           Project: Vprofile
           Owner: DevOps
-        group_id: "{{BastionSG_out.group_id}}"
-        vpc_subnet_id: "{{pubsub1_id}}"
-      register: bastionHost_out
+        group_id: "{{BastionSG_out.group_id}}"  # Security group ID created in the previous task.
+        vpc_subnet_id: "{{pubsub1_id}}"          # ID of the public subnet to launch the instance.
+      register: bastionHost_out           # Store the output of this task in 'bastionHost_out'.
+
