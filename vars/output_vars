@@ -1,12 +1,16 @@
-vpcid: vpc-xxxxxxxxxxxxxxxxxxxxxxx
-pubsub1_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
-pubsub2_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
-pubsub3_id:subnet-xxxxxxxxxxxxxxxxxxxxxxx
-privsub1_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
-privsub2_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
-privsub3_id: subnet-xxxxxxxxxxxxxxxxxxxxxxx
-igwid: igw-xxxxxxxxxxxxxxxxxxxxxxx
-pubRTid: rtb-xxxxxxxxxxxxxxxxxxxxxxx
-NATGWid: nat-xxxxxxxxxxxxxxxxxxxxxxx
-privRTid: xxxxxxxxxxxxxxxxxxxxxxx
+region: us-east-2
+vpcid: vpc-0d7a215f167b82948
+pubsub1_id: subnet-09df8df4ba43d97f1
+pubsub2_id: subnet-09b91369ab55db148
+pubsub3_id: subnet-0725c63745c58cc02
+privsub1_id: subnet-0c3bd3fa63cfa9800
+privsub2_id: subnet-08fe3ccc17cc5fe6b
+privsub3_id: subnet-0c992f7b91e09b64b
+igwid: igw-0c7387f0f7559b296
+pubRTid: rtb-0a5b6f9fadc43319c
+NATGWid: nat-0d290c932770b6ec9
+privRTid: rtb-0a5b6f9fadc43319c
 
+# BEGIN ANSIBLE MANAGED BLOCK
+BastionSGid: sg-0af02a81c85164fee
+# END ANSIBLE MANAGED BLOCK
