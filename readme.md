@@ -22,7 +22,7 @@ The architecture consists of the following components:
 - Security Groups
 - EC2 Instances (including Bastion Host)
 
-![Project diagram](./images/proj6.jpg)
+![Project diagram](./images/proj6b.jpg)
 
 ## Tools and Services Used
 Key tools and services involved in this project include:
