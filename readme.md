@@ -66,11 +66,11 @@ control-machine for running ansible playbook, pre-installed with Ansible and Bot
   - Inbound rules: SSH (Port 22) from **MY IP**
 - Advanced details (User data) : 
 ```bash
-    #!/bin/bash
-    sudo apt update
-    sudo apt install ansible -y
-    sudo apt install awscli -y
-    sudo apt install python3-boto3 -y
+#!/bin/bash
+sudo apt update
+sudo apt install ansible -y
+sudo apt install awscli -y
+sudo apt install python3-boto3 python3-botocore python3-boto -y
 ```
 
 ### 2. **Create and attach IAM Role**

@@ -188,7 +188,7 @@
         state: present
         instance_ids:
           - "{{ web01_out.tagged_instances[0].id }}"
-        purge_instances_ids: true
+        purge_instance_ids: true
         security_group_ids: "{{ vpro_ELB_SG_out.group_id }}"
         subnets:
           - "{{ pubsub1_id }}"
