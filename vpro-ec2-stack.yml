@@ -13,11 +13,11 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vpro-key        # Name of the EC2 key pair to be created.
+        name: vprokey        # Name of the EC2 key pair to be created.
         region: "{{region}}"      # AWS region where the key pair will be created.
       register: vprokey_out           # Store the output of this task in the 'key_out' variable.
 
-    - name: Save private key into file vpro-key.pem
+    - name: Save private key into file loginkey_vpro.pem
       copy:
         content: "{{vprokey_out.key.private_key}}"  # Private key generated in the previous task.
         dest: ./loginkey_vpro.pem                 # Destination path for saving the private key.
@@ -73,7 +73,7 @@
 
     - name: Create Nginx web01
       ec2:
-        key_name: vpro-key
+        key_name: vprokey
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{nginx_ami}}"         # AMI ID for the bastion host image.
@@ -94,7 +94,7 @@
 
     - name: Create Tomcat app01
       ec2:
-        key_name: vpro-key
+        key_name: vprokey
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{tomcat_ami}}"         # AMI ID for the bastion host image.
@@ -115,7 +115,7 @@
 
     - name: Create memcache mc01
       ec2:
-        key_name: vpro-key
+        key_name: vprokey
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{memcache_ami}}"         # AMI ID for the bastion host image.
@@ -136,7 +136,7 @@
 
     - name: Create RabbitMQ rmq01
       ec2:
-        key_name: vpro-key
+        key_name: vprokey
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{rmq_ami}}"         # AMI ID for the bastion host image.
@@ -157,7 +157,7 @@
 
     - name: Create Mysql db01
       ec2:
-        key_name: vpro-key
+        key_name: vprokey
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{mysql_ami}}"         # AMI ID for the bastion host image.

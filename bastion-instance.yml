@@ -12,7 +12,7 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vpro-key        # Name of the EC2 key pair to be created.
+        name: vprokey        # Name of the EC2 key pair to be created.
         region: "{{region}}"      # AWS region where the key pair will be created.
       register: key_out           # Store the output of this task in the 'key_out' variable.
 
@@ -50,7 +50,7 @@
 
     - name: Create Bastion Host
       ec2:
-        key_name: vpro-key           # Name of the key pair to use for the bastion host.
+        key_name: vprokey           # Name of the key pair to use for the bastion host.
         region: "{{region}}"
         instance_type: t2.micro           # Instance type for the bastion host.
         image: "{{bastion_ami}}"         # AMI ID for the bastion host image.
