@@ -20,7 +20,7 @@
     - name: Save private key into file vpro-key.pem
       copy:
         content: "{{vprokey_out.key.private_key}}"  # Private key generated in the previous task.
-        dest: vpro-key.pem                 # Destination path for saving the private key.
+        dest: ./loginkey_vpro.pem                 # Destination path for saving the private key.
         mode: 0600                              # Set permissions on the private key file.
       when: vprokey_out.changed                     # Conditionally execute this task when the private key changes.
 
@@ -41,7 +41,7 @@
     - name: Create Security group for vprofile stack
       ec2_group:
         name: vpro-stack-SG
-        description: Allow port 0? from everywhere and all ports within sg
+        description: Allow port 22 from everywhere and all ports within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
         purge_rules: no
