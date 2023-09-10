@@ -36,12 +36,12 @@
             to_port: 80
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on port 80
-      register: vpro_ELB_SG_out            # Store the output of this task in 'BastionSG_out'.
+      register: vpro_ELB_SG_out            # Store the output of this task in 'vpro_ELB_SG_out'.
 
     - name: Create Security group for vprofile stack
       ec2_group:
         name: vpro-stack-SG
-        description: Allow port 22 from everywhere and all ports within sg
+        description: Allow port 0? from everywhere and all ports within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"              # ID of the VPC to associate the security group with.
         purge_rules: no
