@@ -205,14 +205,13 @@
           app01_id: {{ app01_out.tagged_instances[0].private_ip }}
           rmq01_id: {{ rmq01_out.tagged_instances[0].private_ip }}
           mc01_id: {{ mc01_out.tagged_instances[0].private_ip }}
-          mc01_id: {{ mc01_out.tagged_instances[0].private_ip }}
           db01_id: {{ db01_out.tagged_instances[0].private_ip }}
 
     - name: Copy login key to provision_stack directory
       copy:
-        src: vpro-key.pem
-        dest: provision-stack/vpro-key.pem
-        mode: '0600'
+        src: loginkey_vpro.pem
+        dest: provision-stack/loginkey_vpro.pem
+        mode: '0400'
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
@@ -228,16 +227,16 @@
           [websrvgrp]
           web01
           
-          [websrvgrp]
+          [appsrvgrp]
           app01
           
-          [websrvgrp]
+          [rmqsrvgrp]
           rmq01
           
-          [websrvgrp]
+          [mcsrvgrp]
           mc01
           
-          [websrvgrp]
+          [dbsrvgrp]
           db01
           
           [control]
@@ -245,13 +244,13 @@
           
           [stack_inst:children]
           websrvgrp
-          websrvgrp
-          websrvgrp
-          websrvgrp
-          websrvgrp
+          appsrvgrp
+          rmqsrvgrp
+          mcsrvgrp
+          dbsrvgrp
           
           [stack_inst:vars]
           ansible_user=ubuntu
-          ansible_ssh_private_key_file=vpro-key.pem
+          ansible_ssh_private_key_file=loginkey_vpro.pem
           #ansible_python_interpreter=/usr/bin/python3
           
