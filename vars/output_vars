@@ -1,16 +1,16 @@
 region: us-east-2
-vpcid: vpc-0d7a215f167b82948
-pubsub1_id: subnet-09df8df4ba43d97f1
-pubsub2_id: subnet-09b91369ab55db148
-pubsub3_id: subnet-0725c63745c58cc02
-privsub1_id: subnet-0c3bd3fa63cfa9800
-privsub2_id: subnet-08fe3ccc17cc5fe6b
-privsub3_id: subnet-0c992f7b91e09b64b
-igwid: igw-0c7387f0f7559b296
-pubRTid: rtb-0a5b6f9fadc43319c
-NATGWid: nat-0d290c932770b6ec9
-privRTid: rtb-0a5b6f9fadc43319c
+vpcid: vpc-0221d3e53a827ae67
+pubsub1_id: subnet-0adad4d22fcfc68a0
+pubsub2_id: subnet-083463a6890d2a022
+pubsub3_id: subnet-01bf3e8d86488ffea
+privsub1_id: subnet-085b23412ab709abe
+privsub2_id: subnet-0c960a1fa386ed377
+privsub3_id: subnet-0e0a9a5623806fdfd
+igwid: igw-0e37e37e1a04f6ed2
+pubRTid: rtb-039aff73d802036c1
+NATGWid: nat-0730c029e5f6e84be
+privRTid: rtb-039aff73d802036c1
 
 # BEGIN ANSIBLE MANAGED BLOCK
-BastionSGid: sg-0af02a81c85164fee
+BastionSGid: sg-02941297f04b65930
 # END ANSIBLE MANAGED BLOCK
