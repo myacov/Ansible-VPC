@@ -16,8 +16,8 @@
         region: "{{region}}"      # AWS region where the key pair will be created.
       register: key_out           # Store the output of this task in the 'key_out' variable.
 
- #   - debug:
- #      var: key_out
+    - debug:
+       var: key_out
 
     - name: Save private key into file bastion-key.pem
       copy:

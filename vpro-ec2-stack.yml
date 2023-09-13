@@ -23,6 +23,9 @@
         dest: ./loginkey_vpro.pem                 # Destination path for saving the private key.
         mode: 0600                              # Set permissions on the private key file.
       when: vprokey_out.changed                     # Conditionally execute this task when the private key changes.
+    
+    - debug:
+       var: vprokey_out
 
     - name: Create Security group for Load Balancer
       ec2_group:
