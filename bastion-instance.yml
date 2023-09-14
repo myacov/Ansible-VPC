@@ -38,7 +38,7 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{MY_IP}}"         # IP address to allow SSH access.
-            rule_desc: allow all on port 80
+            rule_desc: allow all on port 22
       register: BastionSG_out            # Store the output of this task in 'BastionSG_out'.
 
     - name: Insert/Update "BastionSGid" in vars/output-vars
