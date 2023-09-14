@@ -6,7 +6,7 @@
   tasks:
 
     - name: Import VPC setup output variables
-      include_vars: vars/output_vars   # Import variables from the 'vars/output_vars' file.
+      include_vars: vars/vpc_output_vars   # Import variables from the 'vars/vpc_output_vars' file.
 
     - name: Import vprofile setup variables
       include_vars: vars/vprostack_setup
@@ -38,7 +38,6 @@
             from_port: 80
             to_port: 80
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 80
       register: vpro_ELB_SG_out            # Store the output of this task in 'vpro_ELB_SG_out'.
 
     - name: Create Security group for vprofile stack
