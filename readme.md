@@ -23,6 +23,7 @@ The architecture consists of the following components:
 - EC2 Instances (including Bastion Host)
 
 ![Project diagram](./images/proj6b.jpg)
+![Project diagram Stack](./images/proj6c.jpg)
 
 ## Tools and Services Used
 Key tools and services involved in this project include:
