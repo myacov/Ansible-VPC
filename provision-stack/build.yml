@@ -1,6 +1,6 @@
 ---
 # code: language=ansible
-- name: Generate artifact, copy artifact &sql file to files dir
+- name: Generate artifact, copy artifact & SQL file to files dir
   hosts: localhost
   connection: local
   become: yes
@@ -26,14 +26,14 @@
       command: "mvn install"
       args:
         chdir: vprofile-repo
-      when: git_status.changed  # only if there is a new commit
-      register: mvn info
+      when: git_status.changed  # Execute only if there is a new commit
+      register: mvn_build_result
 
     - name: Copy artifacts to files directory
       copy:
         src: "{{ item }}"
         dest: files/ROOT.war
-      with_fileglob: vprofile-repo/target/*.war
+      with_fileglob: vprofile-repo/target/*.war  # loop through all war files
 
     - name: Copy SQL file to files directory
       copy:
